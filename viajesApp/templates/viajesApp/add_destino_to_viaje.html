@@ -1,0 +1,10 @@
+{% extends 'viajesApp/base.html' %}
+
+{% block content %}
+    {% load bootstrap %}
+    <h1>Agregar destino</h1>
+    <form method="POST" class="viaje-form">{% csrf_token %}
+        {{ form|bootstrap}}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+{% endblock %}

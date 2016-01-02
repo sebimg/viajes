@@ -1,0 +1,29 @@
+    {% extends 'viajesApp/base.html' %}
+
+
+    {% block content %}
+        <div class="viaje">
+            {% if viaje.start_date %}
+                <div class="date">
+                    {{ viaje.start_date }}
+                </div>
+            {% endif %}
+        <a class="btn btn-default" href="{% url 'viaje_edit' pk=viaje.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'viaje_remove' pk=viaje.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+            <h1>{{ viaje.title }}</h1>
+            <p>{{ viaje.detalles|linebreaks }}</p>
+        </div>
+        <hr>
+        <a class="btn btn-default" href="{% url 'add_destino_to_viaje' pk=viaje.pk %}">Agregar destino</a>
+        {% for destino in viaje.destinos.all %}
+        <div class="destino">
+            <div class="date">{{ destino.start_date }}</div>
+            <strong>{{ destino.hotel }}</strong>
+            <p>{{ destino.comentario|linebreaks }}</p>
+        <a class="btn btn-default" href="{% url 'destino_edit' pk=destino.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'destino_remove' pk=destino.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        {% empty %}
+        <p>No hay destinos cargados aún! </p>
+        {% endfor %}
+    {% endblock %}

@@ -1,23 +1,46 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;
-        charset=utf-8" />
-        <title>{% block title %}{% if page_title %}{{ page_title }} -
-        {% endif %}{{ site_name }}{% endblock %}</title>
-        <meta name="keywords" content="{{ palabras_claves }}" />
-        <meta name="description" content="{{ descripcion }}" />
+  {% load staticfiles %}
+ <html>
 
-        <link href="{% static "viajesApp/bootstrap/css/bootstrap.css" %}" rel="stylesheet">
-        <link href="{% static "viajesApp/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
-        <link href="{% static "viajesApp/bootstrap/css/bootstrap-theme.css" %}" rel="stylesheet">
-        <link href="{% static "viajesApp/bootstrap/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <head>
+        <title>Viajes App</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'viajesApp/css/viajesApp.css' %}">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    {{ form.media }}
 
     </head>
-
     <body>
-    {% block contenedor %}{% endblock %}
-    </body>
 
-</html>
+        <div class="page-header">
+            {% if user.is_authenticated %}
+            <a href="{% url 'viaje_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <p class="top-menu">Hola {{ user.username }}<small>(<a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>)</small></p>
+            {% else %}
+            <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+            {% endif %}
+
+        <h1><a href="{% url 'viajesApp.views.viaje_list' %}">Organizador de Viajes</a></h1>
+        </div>
+
+       <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+ </html>
+
+
+
+
+
+
+

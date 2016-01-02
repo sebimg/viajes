@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'viajesApp',
-    'bootstrapform'
+    'bootstrapform',
+    'bootstrap3_datepicker',
+    'datetimewidget',
+    'bootstrap3_datetime'
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -50,6 +54,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'viajes.urls'
@@ -125,3 +130,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+LOGIN_REDIRECT_URL = '/viajesApp'
